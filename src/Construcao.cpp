@@ -4,6 +4,7 @@
 #include <vector>
 #include <algorithm>
 #include <random>
+#include <chrono>
 #include "Util.h"
 #include "Construcao.h"
 
