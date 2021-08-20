@@ -79,7 +79,7 @@ float vizinho_aleatorio(int n, vector<int> &s, float **d, float fo, int *melhor_
 
 }//vizinho_aleatorio 
 
-/* MÈtodo da descida com estrategia best improvement */
+/* M√©todo da descida com estrategia best improvement */
 float descida_best_improvement(int n, vector<int> &s, float **d)
 {
   int melhor_i, melhor_j, iter;
@@ -118,12 +118,12 @@ float descida_randomica(int n, vector<int> &s, float **d, int IterMax)
   while (iter < IterMax){
     iter ++;
 
-  /*  Implementar a descida randÙmica  */
+  /*  Implementar a descida rand√¥mica  */
 
 
   }
 
-  /* Implementar a impress„o final (veja descida completa)*/
+  /* Implementar a impress√£o final (veja descida completa)*/
 
   return fo;
 }
@@ -164,15 +164,15 @@ float descida_first_improvement(int n, vector<int> &s, float **d)
  iter = 0;
  imprime_fo((char*)"DescidaFI.txt", (fim_CPU - inicio_CPU)/CLOCKS_PER_SEC,fo,iter);
 
-  /* Implementar a descida First Improvement armazenando, a cada iteraÁ„o:
-      o tempo de execuÁ„o
-      o valor da funÁ„o de avaliaÁ„o da soluÁ„o corrente
-      a iteraÁ„o na qual a soluÁ„o vizinha foi aceita
-      Para fazer essa impress„o, use o procedimento imprime_fo e imprime_fo_viz, 
-      disponÌveis em Arquivos.cpp */
+  /* Implementar a descida First Improvement armazenando, a cada itera√ß√£o:
+      o tempo de execu√ß√£o
+      o valor da fun√ß√£o de avalia√ß√£o da solu√ß√£o corrente
+      a itera√ß√£o na qual a solu√ß√£o vizinha foi aceita
+      Para fazer essa impress√£o, use o procedimento imprime_fo e imprime_fo_viz, 
+      dispon√≠veis em Arquivos.cpp */
  
 
   fim_CPU = clock();
-  imprime_fo((char*)"DescidaFI.txt", (fim_CPU - inicio_CPU)/CLK_TCK,fo,iter);
+  imprime_fo((char*)"DescidaFI.txt", (fim_CPU - inicio_CPU)/CLOCKS_PER_SEC,fo,iter);
   return fo;
 }
