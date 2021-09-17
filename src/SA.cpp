@@ -31,41 +31,7 @@ float SA(int n, std::vector<int> &s, float **d, float alpha,
     fo = fo_star = fo_viz = calcula_fo(n, s, d);
 
 /* implementar o loop do SA */
-        while(temp > temp_final){
-        while(iterT < SAmax){
-            iterT++;
-            fo_viz = vizinho_aleatorio(n, s, d, fo, &melhor_i, &melhor_j);
-            delta = fo_viz - fo;
-
-            if (delta < 0){
-
-                swap(s[melhor_i],s[melhor_j]);
-                fo = fo_viz;
-                imprime_fo((char*)"SA.txt", (fim_CPU - inicio_CPU)/CLOCKS_PER_SEC,fo,iterT);
-                if(fo_viz < fo_star){
-                    s_star = s;
-                    fo_star = fo;
-
-                    fim_CPU = clock();
-                    printf("Temp.: %.2lf\n", temp);
-                    printf("Melhor solucao: %.2lf\n\n", fo);
-                    //imprime_fo((char*)"SA.txt", (fim_CPU - inicio_CPU)/CLOCKS_PER_SEC,fo,iterT);
-                }
-            }
-            else{
-                x = randomico(0,1);
-                if (x < exp(-delta/temp)){
-                    swap(s[melhor_i],s[melhor_j]);
-                    fo = fo_viz;
-                    //imprime_fo((char*)"SA.txt", (fim_CPU - inicio_CPU)/CLOCKS_PER_SEC,fo,iterT);
-                }
-            }
-        }
-        temp *= alpha;
-        //printf("Temp.: %.2lf\n", temp);
-        iterT = 0;
-    }
-
+  
     s = s_star;
 
     fim_CPU = clock();
