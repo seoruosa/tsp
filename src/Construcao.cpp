@@ -33,25 +33,12 @@ void constroi_solucao_gulosa_vizinho_mais_proximo(int n, vector<int> &s, float *
   int mais_proxima; // armazena a cidade mais proxima para inserir na solucao
   float dist; // armazena a menor distancia
 
-  for (int i = 1; i < (n); i++) 
-  {
-    dist = INT_MAX;
-    int pos = 0; // posicao da cidade mais proxima na lista nao_visitada
-
-    for(int j = 0; j < nao_visitada.size(); j++){
-
-      if(d[s[i-1]][nao_visitada[j]] < dist){
-        dist = d[s[i-1]][nao_visitada[j]];
-        mais_proxima = nao_visitada[j];
-        pos = j;
-      }
-    }
-    // Insere a cidade a cidade mais proxima apos a ultima cidade inserida
-    s.push_back(mais_proxima);
-
-    // Apagar a cidade inserida da lista de nao visitadas
-    nao_visitada.erase(nao_visitada.begin() + pos);
-  }
+/*
+	Implementar o loop do metodo construtivo, 
+	inserindo sempre a cidade mais proxima ainda
+	nao visitada na solucao.
+*/
+	
 }
 
 
