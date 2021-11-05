@@ -81,7 +81,7 @@ float AG(int n,
         /* Zerar a populacao e seus dados */
         /* Primeira metade da populacao <-- populacao sobrevivente */
         for (int j = 0; j < nind/2; j++){
-            for (int i = 0; i < n; i++) pop[j][i] = pop_sobrev[j][i];
+            pop[j] = pop_sobrev[j];
             fo_pop[j] = fo_pop_sobrev[j];
         }
 
