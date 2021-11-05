@@ -1,4 +1,4 @@
-q#include <stdio.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
 #include <limits.h>
@@ -56,14 +56,13 @@ float AG(int n,
     float desvio = INT_MAX;
     while (desvio > max_desvio){
         ngeracoes++;
-        /* Selecionar os pais e */
-        /* Aplicar crossover */
+
         int quant_filhos = 0;
         while (quant_filhos < nind/2){
             /* Selecao dos pais */
+            /* Aplicar crossover */
             
             
-            }
         }
         /* Aplicar mutacao segundo uma probabilidade*/
         for (int j = 0; j < nind; j++)
