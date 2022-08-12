@@ -187,28 +187,11 @@ void constroi_solucao_parcialmente_gulosa_vizinho_mais_proximo(int n, vector<int
     int cidade_escolhida;
     while (j < n){
 
-      tamanho_LC = nao_visitadas.size();
-      //printf("Tamanho da lista de candidatos = %d \n",tamanho_LC);
-
-      //alpha = 0;
-      int tamanho_LRC = MAX(1, alpha * tamanho_LC);
-
-      //printf("Tamanho da lista restrita de candidatos = %d \n",tamanho_LRC);
-      int posicao_escolhida = rand()%tamanho_LRC;
-      cidade_escolhida = nao_visitadas[posicao_escolhida];
-      //printf("Cidade escolhida = %d \n",cidade_escolhida);
-
-      /* Insere a cidade escolhida apos a ultima cidade inserida*/
-      s.push_back(cidade_escolhida);
-      /* Apaga a cidade escolhida da lista de nao visitadas */
-      nao_visitadas.erase(nao_visitadas.begin()+posicao_escolhida);
-
-        /* Ordenando a lista de cidade nao visitadas */
-      ordem.index = cidade_escolhida; //atualiza ultima cidade inserida
-      sort(nao_visitadas.begin(), nao_visitadas.end());  //ordena pelos indices (para manter a estabilidade)
-      stable_sort(nao_visitadas.begin(), nao_visitadas.end(), ordem); //ordena pelas distancias
-
-      j++;
+      /*
+      *
+      *   Implementar construção da solução elemento por elemento
+      *
+      */
     }
 }
 
