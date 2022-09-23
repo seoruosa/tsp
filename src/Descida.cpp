@@ -8,6 +8,7 @@
 #include "Construcao.h"
 #include "Descida.h"
 #include "Util.h"
+#include <chrono>
 
 using namespace std;
 
@@ -82,19 +83,32 @@ float vizinho_aleatorio(int n, vector<int> &s, float **d, float fo, int *melhor_
 /* Método da descida com estrategia best improvement */
 float descida_best_improvement(int n, vector<int> &s, float **d)
 {
-  int melhor_i, melhor_j, iter;
-  float fo_viz, fo;
-  bool melhorou;
-  clock_t inicio_CPU, fim_CPU;
+  float fo = calcula_fo(n, s, d);
+  float fo_viz = fo;
 
-  fo = fo_viz = calcula_fo(n, s, d);
   limpa_arquivo((char*)"DescidaBI.txt");
-  inicio_CPU = fim_CPU = clock();
-  iter = 0;
+  
+  clock_t inicio_CPU = clock();
+  clock_t fim_CPU = inicio_CPU;
+
+  int iter = 0;
   imprime_fo((char*)"DescidaBI.txt", (fim_CPU - inicio_CPU)/CLOCKS_PER_SEC,fo,iter);
 
-    /*  Implementar a descida com estrategia best improvement */
+  bool melhorou = true;
+  /*  Implementar a descida com estrategia best improvement */
+  while(melhorou)
+  {
+    melhorou = false;
+    int melhor_i, melhor_j;
+    fo_viz = melhor_vizinho(n, s, d, fo, &melhor_i, &melhor_j);
 
+    if (fo_viz < fo)
+    {
+      melhorou = true;
+      fo = fo_viz;
+      swap(s[melhor_i], s[melhor_j]);
+    }
+  }
 
 
   fim_CPU = clock();
