@@ -2,6 +2,7 @@
 #include <iostream>
 #include <climits>
 #include <vector>
+#include <set>
 #include <algorithm>
 #include <random>
 #include <chrono>
@@ -21,24 +22,41 @@ void constroi_solucao(int n, vector<int>& s, float **distancia)
    implementa o Metodo construtivo do vizinho mais proximo */
 void constroi_solucao_gulosa_vizinho_mais_proximo(int n, vector<int> &s, float **d)
 {
-  vector<int> nao_visitada; //lista das cidades ainda nao visitadas
+  set<int> nao_visitada; //lista das cidades ainda nao visitadas
 
   // inserir um elemento no final de uma lista
-  for(int i = 1; i < n; i++)
-    nao_visitada.push_back(i);
+  for (int i = 1; i < n; i++)
+    nao_visitada.insert(i);
 
-  s.clear(); // limpa solucao
+  s.clear();      // limpa solucao
   s.push_back(0); // A cidade de origem é a cidade 0
 
-  int mais_proxima; // armazena a cidade mais proxima para inserir na solucao
-  float dist; // armazena a menor distancia
-
-/*
+  /*
 	Implementar o loop do metodo construtivo, 
 	inserindo sempre a cidade mais proxima ainda
 	nao visitada na solucao.
 */
-	
+
+  while (!nao_visitada.empty())
+  {
+    int cidade_mais_proxima;                       // armazena a cidade mais proxima para inserir na solucao
+    float min_dist = numeric_limits<float>::max(); // armazena a menor distancia
+
+    int ultima_cidade = s.back();
+
+    for (auto &cidade_candidata : nao_visitada)
+    {
+      float dist = d[ultima_cidade][cidade_candidata];
+      if (dist < min_dist)
+      {
+        min_dist = dist;
+        cidade_mais_proxima = cidade_candidata;
+      }
+    }
+
+    nao_visitada.erase(cidade_mais_proxima);
+    s.push_back(cidade_mais_proxima);
+  }
 }
 
 
