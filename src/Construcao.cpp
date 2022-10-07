@@ -176,8 +176,7 @@ void constroi_solucao_gulosa_insercao_mais_barata(int n, vector<int> *s, float *
 void constroi_solucao_parcialmente_gulosa_vizinho_mais_proximo(int n, vector<int> &s, float **d, float alpha)
 {
 
-    vector<int> nao_visitadas; 
-    int tamanho_LC;
+    vector<int> nao_visitadas;
 
     /* Inicio da Fase de Construcao de uma solucao */
     for (int i=1; i<n; i++){
@@ -197,19 +196,22 @@ void constroi_solucao_parcialmente_gulosa_vizinho_mais_proximo(int n, vector<int
     ordem.d = d; // fornece a matriz de distancia para usar na ordenacao
     ordem.index = s[0];
 
-    /* Ordenando a lista de cidade nao visitadas */
-    stable_sort(nao_visitadas.begin(), nao_visitadas.end(), ordem);
-
 
     int j = 1;
-    int cidade_escolhida;
     while (j < n){
+      int tam_lista = 1 + std::ceil(((float)(nao_visitadas.size() - 1))*alpha);
+      int pos_lista = randomico(0, tam_lista);
 
-      /*
-      *
-      *   Implementar construção da solução elemento por elemento
-      *
-      */
+      /* Ordenando a lista de cidade nao visitadas */
+      ordem.index = s.back();
+      stable_sort(nao_visitadas.begin(), nao_visitadas.end(), ordem);
+      
+      int cidade_escolhida = nao_visitadas[pos_lista];
+      s.push_back(cidade_escolhida);
+      
+      nao_visitadas.erase(nao_visitadas.begin() + pos_lista);
+
+      ++j;
     }
 }
 
