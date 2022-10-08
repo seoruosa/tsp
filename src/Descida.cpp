@@ -72,9 +72,25 @@ float vizinho_aleatorio(int n, vector<int> &s, float **d, float fo, int *melhor_
 {
     float fo_viz = fo;
     int i, j;
-    float delta1, delta2;
 
+    // seleciona as posicoes das cidades para trocar
+    i = rand() % n;
+    do{
+        j = rand() % n;
+    }while (i == j);
 
+    float delta1 = calcula_delta(n,s,d,i,j);
+    // Faz o movimento
+    swap(s[i], s[j]);
+
+    float delta2 = calcula_delta(n,s,d,i,j);
+    swap(s[i], s[j]);
+
+    // Calcular a nova distancia
+    fo_viz = fo_viz - delta1 + delta2;
+    
+    *melhor_i = i;
+    *melhor_j = j;
     // retornar a distancia do  vizinho
     return fo_viz;
 
@@ -132,12 +148,18 @@ float descida_randomica(int n, vector<int> &s, float **d, int IterMax)
   while (iter < IterMax){
     iter ++;
 
-  /*  Implementar a descida randômica  */
+    fo_viz = vizinho_aleatorio(n, s, d, fo, &melhor_i, &melhor_j);
 
-
+    if (fo_viz < fo)
+    {
+      swap(s[melhor_i], s[melhor_j]);
+      fo = fo_viz;
+      iter = 0;
+    }
   }
 
-  /* Implementar a impressão final (veja descida completa)*/
+  fim_CPU = clock();
+  imprime_fo((char*)"DescidaRandomica.txt", (fim_CPU - inicio_CPU)/CLOCKS_PER_SEC,fo,iter);
 
   return fo;
 }

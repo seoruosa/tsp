@@ -110,7 +110,14 @@ int main(int argc, char* argv[])
            break;
 
     case 3: /* Descida Randomica */
-           printf("Nao implementado\n"); break;
+           inicio_CPU = clock();
+           fo = descida_randomica(n, s, d, n);
+           fim_CPU = clock();
+           printf("\nSolucao obtida usando a estrategia Descida Randomica:\n");
+           imprime_rota(s,n);
+           printf("Funcao objetivo = %f\n",fo);
+           printf("Tempo de CPU = %f segundos:\n",(double)(fim_CPU - inicio_CPU)/CLOCKS_PER_SEC);
+           break;
 
     case 4: /* Descida com primeiro de melhora */
            printf("Nao implementado\n");
