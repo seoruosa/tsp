@@ -52,19 +52,19 @@ void embaralha_vetor(vector<int> *vetor, int n);
 
 void insere_meio_vetor(int *vetor, int valor, int pos, int qde);
 
-/* Procura a posição da cidade dada no vetor */
+/* Procura a posiï¿½ï¿½o da cidade dada no vetor */
 int busca_pos_valor(int *vetor, int cidade, int n);
 
-/* Retorna se uma cidade já foi inserido no vetor */
+/* Retorna se uma cidade jï¿½ foi inserido no vetor */
 int foi_inserida(int *vetor, int cidade, int n);
 
-/* Calcula o desvio-padrão das fos da população */
+/* Calcula o desvio-padrï¿½o das fos da populaï¿½ï¿½o */
 float calcula_desvio_padrao(vector<float> &fo_pop, int n);
 
 /* Atualiza a matriz de arestas */
 void atualiza_arestas(int **arestas, int n, int m, int prox_cid);
 
-/* Para ordenação crescente, verifica se a distância entre (i,j) é menor que (i, i+1)*/
+/* Para ordenaï¿½ï¿½o crescente, verifica se a distï¿½ncia entre (i,j) ï¿½ menor que (i, i+1)*/
 //inline bool ordena_dist_crescente (float i, float j, vector<int> *s, float **d)
 //{
 //    return ( d[s->at(i)][s->at(j)] < d[s->at(i)][s->at(i+1)] );
@@ -78,5 +78,7 @@ struct ordena_dist_crescente {
         return ( d[index][i] < d[index][j]);
     }
 } ;
+
+float custo_insercao(vector<int> &rota, int posicao, float **d, int cidade);
 
 #endif

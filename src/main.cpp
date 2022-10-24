@@ -52,8 +52,10 @@ int main(int argc, char* argv[])
   srand((unsigned) time(NULL)); // pega a hora do relogio como semente
 
   obter_parametros_pcv((char*)"data/c50info.txt", &n, &melhor_fo_lit);
+// obter_parametros_pcv((char*)"data/a280info.txt", &n, &melhor_fo_lit);
   d = cria_matriz_float(n, n); // matriz de distancias
   le_arq_matriz((char*)"data/c50.txt", n, d);
+//   le_arq_matriz((char*)"data/a280.txt", n, d);
 
 
   int escolha = 0;
@@ -88,7 +90,11 @@ int main(int argc, char* argv[])
                  printf("Funcao objetivo = %f\n",fo);
 	         break;
            case 4: /* Geracao parcialmente gulosa de uma solucao inicial via insercao mais barata */
-                 printf("Ainda nao implementado...\n");
+                 constroi_solucao_parcialmente_gulosa_insercao_mais_barata(n, s, d, alpha);
+                 fo = calcula_fo(n, s, d);
+                 printf("\nSolucao construida de forma parcialmente gulosa (Insercao Mais Barata):\n");
+                 imprime_rota(s, n);
+                 printf("Funcao objetivo = %f\n",fo);
 	         break;
            case 5: /* Geracao aleatoria de uma solucao inicial */
                  constroi_solucao_aleatoria(n, s, d);

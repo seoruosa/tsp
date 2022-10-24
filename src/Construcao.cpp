@@ -218,5 +218,78 @@ void constroi_solucao_parcialmente_gulosa_vizinho_mais_proximo(int n, vector<int
 /* Constroi uma solucao parcialmente gulosa com base no metodo da insercao mais barata */
 void constroi_solucao_parcialmente_gulosa_insercao_mais_barata(int n, vector<int> &s, float **d, float alpha)
 {
+  vector<int> nao_visitadas;
 
+  int melhor_cidade;
+  float menor_dist = numeric_limits<float>::max();
+  float dist;
+  
+  int idx_cidade;
+
+  /* Inicio da Fase de Construcao de uma solucao */
+  for (int i=1; i<n; i++)
+  {
+      nao_visitadas.push_back(i);
+  }
+
+  //limpa solucao corrente
+  s.clear();
+  s.push_back(0);  /* A cidade origem � a cidade 0 */
+
+  //Ordena lista
+  ordena_dist_crescente ordem;
+  ordem.d = d; // fornece a matriz de distancia para usar na ordenacao
+  ordem.index = s[0];
+  stable_sort(nao_visitadas.begin(), nao_visitadas.end(), ordem);
+
+  // Adiciona a segunda cidade
+  s.push_back(nao_visitadas[0]);
+  nao_visitadas.erase(nao_visitadas.begin());
+
+  // Adiciona a terceira cidade
+  for (idx_cidade = 0; idx_cidade < nao_visitadas.size(); idx_cidade++)
+  {
+    dist = d[s[0]][nao_visitadas[idx_cidade]] + d[nao_visitadas[idx_cidade]][s.back()];
+
+    if(dist < menor_dist)
+    {
+      melhor_cidade = idx_cidade;
+      menor_dist = dist;
+    }
+  }
+
+  s.push_back(nao_visitadas[melhor_cidade]);
+  nao_visitadas.erase(nao_visitadas.begin() + melhor_cidade);
+  
+  // Adiciona as cidades que tragam o menor incremento
+  while (!nao_visitadas.empty())
+  {
+    int proxima_cidade = nao_visitadas.back();
+    nao_visitadas.pop_back();
+
+    // busca o menor incremento
+    vector<float> custo_insercao_vec;
+    vector<int> pos_custo_insercao;
+
+    int posicao;
+    for (posicao = 0; posicao < s.size(); posicao++)
+    {
+      custo_insercao_vec.push_back(custo_insercao(s, posicao, d, proxima_cidade));
+      pos_custo_insercao.push_back(posicao);
+    }
+    
+    auto ordem_custo = [custo_insercao_vec](int i,int j) {
+      return ( custo_insercao_vec[i] < custo_insercao_vec[j]);
+    };
+
+    stable_sort(pos_custo_insercao.begin(), pos_custo_insercao.end(), ordem_custo);
+
+    int tam_lista = 1 + std::ceil(((float)(s.size() - 1))*alpha);
+    int pos_lista = randomico(0, tam_lista);
+
+    melhor_cidade = pos_custo_insercao[pos_lista];
+    
+    // adiciona cidade
+    s.insert(s.begin() + melhor_cidade, proxima_cidade);    
+  }    
 }
